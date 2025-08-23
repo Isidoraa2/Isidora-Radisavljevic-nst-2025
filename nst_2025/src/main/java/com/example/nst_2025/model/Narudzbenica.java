@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name = "narudzbenica")
 public class Narudzbenica {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private LocalDate datum;
