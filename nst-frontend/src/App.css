@@ -3,9 +3,9 @@
     bottom: 0px;
     width: 100%;
     height: 50px;
-    background-color: black;
     text-align: center;
     color: white;
+    background-color: #2F4050; 
 }
 
 .hamburger {
@@ -28,7 +28,7 @@
     overflow: hidden;
     position: fixed;
     left:0;
-    top:90px;
+    top:80px;
 }
 
 .SidebarList{
@@ -101,4 +101,19 @@
     display: flex;
     align-items: center;
     gap: 8px; 
+}
+
+.custom-navbar {
+  background-color: #2F4050; 
+  height: 90px;
+}
+.logout-icon {
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.3s ease;
+  align-items: flex-end;
+}
+
+.logout-icon:hover {
+  color: #ddd;
 }
