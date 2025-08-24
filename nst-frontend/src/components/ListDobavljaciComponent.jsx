@@ -42,14 +42,14 @@ const ListDobavljaciComponent = () => {
   return (
     <div className='container'>
         
-        <h2 style={{marginTop: '10px'}}>Lista dobavljaca</h2>
+        <h2 style={{marginTop: '10px'}}>Lista dobavljača</h2>
         <table className='table table-striped table-bordered'>
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Naziv dobavljaca</th>
+                    <th>Naziv dobavljača</th>
                     <th>Adresa</th>
-                    <th>Tip dobavljaca</th>
+                    <th>Tip dobavljača</th>
                     <th>Pib</th>
                     <th>Opcije</th>
                 </tr>
@@ -65,8 +65,6 @@ const ListDobavljaciComponent = () => {
                         <td><button className='btn btn-outline-info' onClick={()=>izmeniDobavljaca(dobavljac.id)}>Izmeni</button>
                             <button className='btn btn-outline-danger' onClick={()=>izbrisiDobavljaca(dobavljac.id)}
                                 style={{marginLeft:'10px'}}>Obrisi</button>
-                            <button className='btn btn-outline-success' onClick={()=>pogledajDobavljaca(dobavljac.id)}
-                            style={{marginLeft:'10px'}}>Prikazi</button>
                         </td>
                     </tr>)
                 )

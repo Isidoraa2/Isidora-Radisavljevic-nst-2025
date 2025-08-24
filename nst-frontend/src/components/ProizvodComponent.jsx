@@ -6,14 +6,13 @@ const ProizvodComponent = () => {
   const [naziv, setNaziv] = useState('');
   const [opis, setOpis] = useState('');
   const [jedinicaMere, setJedinicaMere] = useState('');
-  const [cena, setCena] = useState();
+  const [cena, setCena] = useState('');
 
   const { id } = useParams();
   const navigator = useNavigate();
 
   const [errors, setErrors] = useState({
     naziv: '',
-    opis: '',
     jedinicaMere: '',
     cena: ''
   });
@@ -34,11 +33,11 @@ const ProizvodComponent = () => {
   const handleNaziv = e => setNaziv(e.target.value);
   const handleOpis = e => setOpis(e.target.value);
   const handleJedinicaMere = e => setJedinicaMere(e.target.value);
-  const handleCena = e => setCena(Number(e.target.value));
+  const handleCena = e => setCena(e.target.value);
 
   const validateForm = () => {
     let valid = true;
-    const errorsCopy = { naziv: '', opis: '', jedinicaMere: '', cena: '' };
+    const errorsCopy = { naziv: '', jedinicaMere: '', cena: '' };
 
     if (!naziv.trim()) {
       errorsCopy.naziv = 'Unesite naziv proizvoda!';
@@ -61,7 +60,7 @@ const ProizvodComponent = () => {
     e.preventDefault();
     if (!validateForm()) return;
 
-    const proizvod = { naziv, opis, jedinicaMere, cena };
+    const proizvod = { naziv, opis, jedinicaMere, cena:Number(cena) };
 
     if (id) {
       izmeniProizvod(id, proizvod)

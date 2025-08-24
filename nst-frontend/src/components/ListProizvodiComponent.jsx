@@ -34,10 +34,6 @@ function ListProizvodiComponent() {
             })
         }
     
-        function pogledajProizvod(id){
-            navigator(`/prikaz-proizvod/${id}`);
-            //vodi racuna o ovim naopakim znacima navoda, kada hocu da ubacim promenljivu u path
-        }
   return (
     <div className='container'>
         
@@ -62,10 +58,8 @@ function ListProizvodiComponent() {
                         <td>{proizvod.jedinicaMere}</td>
                         <td>{proizvod.cena}</td>
                         <td><button className='btn btn-outline-info' onClick={()=>izmeniProizvod(proizvod.id)}>Izmeni</button>
-                            <button className='btn btn-outline-danger' onClick={()=>deleteProizvod(proizvod.id)}
+                            <button className='btn btn-outline-danger' onClick={()=>izbrisiProizvod(proizvod.id)}
                                 style={{marginLeft:'10px'}}>Obrisi</button>
-                            <button className='btn btn-outline-success' onClick={()=>pogledajProizvod(proizvod.id)}
-                            style={{marginLeft:'10px'}}>Prikazi</button>
                         </td>
                     </tr>)
                 )

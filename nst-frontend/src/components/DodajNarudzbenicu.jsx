@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getDobavljaci, getMaxIdNarudzbenice, getProizvodi, getZaposleni, sacuvajNarudzbenicu } from '../services/Service';
 import { useNavigate } from 'react-router-dom';
 import './RelativeFoother.css';
+import InfoModal from './InfoModal';
 
 const DodajNarudzbenicu = () => {
     const[datum,setDatum]=useState('');
@@ -20,10 +21,11 @@ const DodajNarudzbenicu = () => {
     const [stavke, setStavke] = useState([]);
     const[stavka,setStavka]=useState(null);
     const [error, setError] = useState('');
+    const [showModal, setShowModal] = useState(false);
+
     let idNar=0;
     const navigator=useNavigate();
     useEffect(() => {
-        // Zameni URL sa tvojim REST API URL-om za proizvode
         setDatum(new Date().toISOString().split('T')[0]);
         getMaxIdNarudzbenice()
             .then(response => {
@@ -35,21 +37,21 @@ const DodajNarudzbenicu = () => {
                // console.log(brNarudzbenice);
             })
             .catch(error => {
-                console.error('Greška prilikom ucitavanja proizvoda:', error);
+                console.error('Greška prilikom učitavanja broja narudžbenice:', error);
             });
         getZaposleni().then(response => {
             setZaposleni(response.data);
            // console.log(brNarudzbenice);
         })
         .catch(error => {
-            console.error('Greška prilikom ucitavanja proizvoda:', error);
+            console.error('Greška prilikom ucitavanja zaposlenog:', error);
         });
         getDobavljaci().then(response => {
             setDobavljaci(response.data);
            // console.log(brNarudzbenice);
         })
         .catch(error => {
-            console.error('Greška prilikom ucitavanja proizvoda:', error);
+            console.error('Greška prilikom ucitavanja dobavljača:', error);
         });
         getProizvodi().then(response => {
             setProizvodi(response.data);
@@ -68,7 +70,7 @@ const DodajNarudzbenicu = () => {
      const handleDodajStavku=()=>{
         console.log("Pokusavam da dodam stavku");
         if(kolicina<=0){
-            setError("Kolicina mora biti veca od 0");
+            setError("Količina mora biti veca od 0");
         }else{
             const proizvod = proizvodi.find(p => p.id === parseInt(selectedProizvod));
             
@@ -111,7 +113,8 @@ const DodajNarudzbenicu = () => {
         };
         sacuvajNarudzbenicu(novaNarudzbenica);
         console.log(novaNarudzbenica);
-        navigator('/');
+        setShowModal(true);
+       // navigator('/');
 
     }
   return (
@@ -245,7 +248,7 @@ const DodajNarudzbenicu = () => {
             <th>Naziv Proizvoda</th>
             <th>Jedinica Mere</th>
             <th>Cena</th>
-            <th>Kolicina</th>
+            <th>Količina</th>
             <th>Popust</th>
             <th>Rabat</th>
             <th>Iznos</th>
@@ -279,8 +282,14 @@ const DodajNarudzbenicu = () => {
           style={{ marginTop: '10px', marginBottom: '50px', fontSize: '16px' }}
           onClick={handleSacuvajNarudzbenicu}
         >
-          Sacuvaj narudzbenicu
+          Sačuvaj narudžbenicu
         </button>
+        <InfoModal
+        show={showModal}
+        onClose={() => {setShowModal(false); navigator('/');}}
+        title="Obaveštenje"
+        message="Uspešno ste sačuvali narudžbenicu!"
+      />
       </div>
     </div>
   </div>

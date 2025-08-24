@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { dodajDobavljaca, getDobavljaca, izmeniDobavljaca } from '../services/Service'
 import {Link, useNavigate,useParams } from 'react-router-dom'
+import InfoModal from './InfoModal'
 //import './AbsoluteFoother.css'
 
 const DobavljacComponent = () => {
@@ -8,6 +9,7 @@ const DobavljacComponent = () => {
   const[adresa,setAdresa]=useState('')
   const[tipDobavljaca,setTipDobavljaca]=useState(true)
   const[pib,setPib]=useState('')
+  const[showModal,setShowModal]=useState(false);
 
 
   const {id}=useParams();
@@ -15,15 +17,14 @@ const DobavljacComponent = () => {
   const [errors,setErrors]=useState({
     naziv:'',
     adresa:'',
-    domaciDobavljac:'',
-    pib:''
+    domaciDobavljac:''
   })
 
   function pageTitle(){
     if(id){
-      return <h2 className='text-center'>Izmeni dobavljaca</h2>
+      return <h2 className='text-center'>Izmeni dobavljača</h2>
     }else{
-      return <h2 className='text-center'>Dodaj dobavljaca</h2>
+      return <h2 className='text-center'>Dodaj dobavljača</h2>
     }
   }
 
@@ -58,9 +59,8 @@ const DobavljacComponent = () => {
 
   function sacuvajIliIzmeniDobavljaca(e){
     e.preventDefault();
-
-    if(validateForm()){
-      const dobavljac = {
+    if (!validateForm()) return;
+    const dobavljac = {
       naziv,
       adresa,
       domaciDobavljac: tipDobavljaca, 
@@ -71,7 +71,6 @@ const DobavljacComponent = () => {
         //ako postoji id u url-u
         izmeniDobavljaca(id,dobavljac).then((response)=>{
           console.log(response.data);
-          navigator("/dobavljaci");
         }).catch(error=>{
           console.log(error);
         })
@@ -79,20 +78,12 @@ const DobavljacComponent = () => {
       else{
         dodajDobavljaca(dobavljac).then((response)=>{
           console.log(response.data)
-          navigator("/dobavljaci")
         }).catch(error=>{
           console.log(error);
         })
       }
-      
-      
-    
-    }
-    else{
-
-    }
-
-    
+      setShowModal(true);
+      //navigator("/dobavljaci");
   }
 
   function validateForm(){
@@ -103,21 +94,14 @@ const DobavljacComponent = () => {
     if(naziv.trim()){
       errorsCopy.naziv='';
     }else{
-      errorsCopy.naziv="Unesite naziv dobavljaca!";
+      errorsCopy.naziv="Unesite naziv dobavljača!";
       valid=false;
     }
 
     if(adresa.trim()){
       errorsCopy.adresa='';
     }else{
-      errorsCopy.adresa="Unesite adresu dobavljaca!";
-      valid=false;
-    }
-
-    if(pib.trim()){
-      errorsCopy.pib='';
-    }else{
-      errorsCopy.pib="Unesite PIB dobavljaca!";
+      errorsCopy.adresa="Unesite adresu dobavljača!";
       valid=false;
     }
 
@@ -136,13 +120,13 @@ const DobavljacComponent = () => {
           <div className='card-body'>
             <form>
               <div className='form-group mb-2 '>
-                <label className='form-label'>Naziv dobavljaca:</label>
-                <input type='text' placeholder='Unesite naziv dobavljaca' name='naziv' value={naziv} className={`form-control ${errors.naziv ? 'is-invalid':''}`} onChange={handleNaziv}></input>
+                <label className='form-label'>Naziv dobavljača:</label>
+                <input type='text' placeholder='Unesite naziv dobavljača' name='naziv' value={naziv} className={`form-control ${errors.naziv ? 'is-invalid':''}`} onChange={handleNaziv}></input>
                 {errors.naziv && <div className='invalid-feedback'>{errors.naziv}</div>}
               </div>
               <div className='form-group mb-2 '>
-                <label className='form-label'>Adresa dobavljaca:</label>
-                <input type='text' placeholder='Unesite adresu dobavljaca' name='adresa' value={adresa} className={`form-control ${errors.adresa ? 'is-invalid':''}`} onChange={handleAdresa}></input>
+                <label className='form-label'>Adresa dobavljača:</label>
+                <input type='text' placeholder='Unesite adresu dobavljača' name='adresa' value={adresa} className={`form-control ${errors.adresa ? 'is-invalid':''}`} onChange={handleAdresa}></input>
                 {errors.adresa && <div className='invalid-feedback'>{errors.adresa}</div>}
               </div>
               <div className='form-group mb-2'>
@@ -181,7 +165,14 @@ const DobavljacComponent = () => {
               </div>
               <button type='submit' className='btn btn-outline-success' onClick={sacuvajIliIzmeniDobavljaca}>Submit</button>
               <Link className='btn btn-outline-danger mx-2' to='/dobavljaci'>Cancel</Link>
+              <InfoModal
+                show={showModal}
+                onClose={() => {setShowModal(false); navigator('/dobavljaci');}}
+                title="Obaveštenje"
+                message="Uspešno ste sačuvali/izmenili dobavljača!"
+              />
             </form>
+            
           </div>
         </div>
       </div>
