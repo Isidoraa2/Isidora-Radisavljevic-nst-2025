@@ -49,7 +49,7 @@ public class ProizvodController {
     @DeleteMapping("{id}")
     public ResponseEntity<String>deleteProizvod(@PathVariable Integer id) throws Exception{
         proizvodService.deleteProizvod(id);
-        return new ResponseEntity<>("Proizvod je uspesno obrisan!",HttpStatus.OK);
+        return ResponseEntity.ok("Proizvod je uspesno obrisan");
     }
 
     @ExceptionHandler(value = ResourseNotFoundException.class)

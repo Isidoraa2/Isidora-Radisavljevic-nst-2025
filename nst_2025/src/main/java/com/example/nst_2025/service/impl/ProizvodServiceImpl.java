@@ -52,6 +52,7 @@ public class ProizvodServiceImpl implements ProizvodService {
         proizvod1.setJedinicaMere(proizvod.getJedinicaMere());
         proizvod1.setCena(proizvod.getCena());
         System.out.println("Prosledjeni id je: "+id);
+        proizvodRepository.save(proizvod1);
         return proizvodMapper.toDto(proizvod1);
     }
 
@@ -59,7 +60,7 @@ public class ProizvodServiceImpl implements ProizvodService {
     public void deleteProizvod(Integer id) throws Exception{
         Optional<Proizvod>proizvod=proizvodRepository.findById(id);
         if(!proizvod.isPresent()){
-            throw new Exception("Ne postoji proizvo sa zadatim id-em!");
+            throw new Exception("Ne postoji proizvod sa zadatim id-em!");
         }
         proizvodRepository.deleteById(id);
     }
