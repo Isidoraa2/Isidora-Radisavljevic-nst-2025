@@ -1,21 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Sidebar.css';
+import React, { useEffect, useState } from 'react'
+import '../App.css'
+import { SidebarData } from './SidebarData'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { FaBars } from 'react-icons/fa';
 
-export default function Sidebar() {
+function Sidebar({setIsLoggedIn}) {
+    const navigator=useNavigate();
+    const location=useLocation();
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleSidebar = () => {
+        setIsOpen(!isOpen);
+    };
+    useEffect(() => {
+        setIsOpen(false);
+    }, [location]);
+
   return (
-    <aside className="sidebar">
-      <h4 className="sidebar-title">Meni</h4>
-      <ul className="sidebar-list">
-        <li>
-          <span>Dobavljač</span>
-          <ul>
-            <li><Link to="/dodaj-dobavljaca">Dodaj dobavljača</Link></li>
-            <li><Link to="/dobavljaci">Prikaži sve dobavljače</Link></li>
-            <li><Link to="/prikaz-dobavljaca/1">Pronađi dobavljača</Link></li>
-          </ul>
-        </li>
-      </ul>
-    </aside>
-  );
+    <div>
+        <div className="hamburger" onClick={toggleSidebar}>
+            <FaBars />
+        </div>
+        {isOpen && <div className='Sidebar'>
+         <ul className='SidebarList'>
+            {SidebarData.map((val, key)=>{
+                return(
+                    <li key={key}
+                    className='row'
+                    id={window.location.pathname ==val.link ? 'active': ''}
+                    onClick={()=>{navigator(val.link);}}>
+                        <div id="icon">{val.icon}</div>
+                        <div id="title">{val.title}</div>
+                    </li>
+                )
+            })}
+        </ul> </div>}
+        
+    </div>
+  )
 }
+
+export default Sidebar

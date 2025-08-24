@@ -19,6 +19,7 @@ import ProizvodComponent from './components/ProizvodComponent'
 import ListProizvodiComponent from './components/ListProizvodiComponent'
 import LoginComponent from './components/LoginComponent'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Sidebar from './components/Sidebar'
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -28,6 +29,7 @@ function App() {
     <>
     <BrowserRouter>
     {isLoggedIn ? (<><HeaderComponent setIsLoggedIn={setIsLoggedIn}></HeaderComponent>
+    <Sidebar setIsLoggedIn={setIsLoggedIn}></Sidebar>
       <div className='container'>
       <Routes>
         <Route path='/'element={<HomeComponent></HomeComponent>}></Route>
