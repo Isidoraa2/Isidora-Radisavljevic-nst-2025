@@ -52,6 +52,11 @@ public class ProizvodController {
         return ResponseEntity.ok("Proizvod je uspesno obrisan");
     }
 
+    @GetMapping("/naziv={naziv}")
+    public ResponseEntity<List<ProizvodDto>> findProizvodByNaziv(@PathVariable String naziv) throws Exception {
+        return new ResponseEntity(proizvodService.findProizvodiByNaziv(naziv), HttpStatus.OK);
+    }
+
     @ExceptionHandler(value = ResourseNotFoundException.class)
     public ResponseStatusException handleEntityNotFoundException(ResourseNotFoundException ex) {
         return new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());

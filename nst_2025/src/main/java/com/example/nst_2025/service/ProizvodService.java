@@ -11,5 +11,6 @@ public interface ProizvodService {
     List<ProizvodDto> findAllProizvodi() throws Exception;
     ProizvodDto updateProizvod(Integer id, Proizvod proizvod) throws Exception;
     void deleteProizvod(Integer id) throws Exception;
+    List<ProizvodDto>findProizvodiByNaziv(String naziv) throws Exception;
 
 }

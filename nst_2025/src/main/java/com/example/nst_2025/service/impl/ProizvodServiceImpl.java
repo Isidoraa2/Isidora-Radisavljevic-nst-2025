@@ -8,6 +8,7 @@ import com.example.nst_2025.service.ProizvodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -63,5 +64,12 @@ public class ProizvodServiceImpl implements ProizvodService {
             throw new Exception("Ne postoji proizvod sa zadatim id-em!");
         }
         proizvodRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ProizvodDto> findProizvodiByNaziv(String naziv) throws Exception {
+        List<Proizvod>listaProizvoda=new ArrayList<>();
+        listaProizvoda=proizvodRepository.findByNazivContainingIgnoreCase(naziv);
+        return listaProizvoda.stream().map(proizvod ->proizvodMapper.toDto(proizvod)) .collect(Collectors.toList());
     }
 }
