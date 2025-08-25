@@ -65,4 +65,9 @@ public class DobavljacServiceImpl implements DobavljacService {
         System.out.println("Stigao sam ovde");
         dobavljacRepository.deleteById(id);
     }
+
+    @Override
+    public List<DobavljacDto> findDobavljaceByNazivOrAdresa(String kriterijum) throws Exception {
+        return dobavljacRepository.findByNazivContainingIgnoreCaseOrAdresaContainingIgnoreCase(kriterijum,kriterijum).stream().map(dobavljac ->dobavljacMapper.toDto(dobavljac)) .collect(Collectors.toList());
+    }
 }

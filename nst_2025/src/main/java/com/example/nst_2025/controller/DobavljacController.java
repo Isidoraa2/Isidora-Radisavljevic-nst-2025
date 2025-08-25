@@ -59,6 +59,11 @@ public class DobavljacController {
         return ResponseEntity.ok("Dobavljac je uspesno obrisan");
     }
 
+    @GetMapping("/pretraga/{kriterijum}")
+    public ResponseEntity<List<DobavljacDto>>findDobavljaciByNazivOrAdresa(@PathVariable String kriterijum) throws Exception {
+        return  new ResponseEntity<>(dobavljacService.findDobavljaceByNazivOrAdresa(kriterijum),HttpStatus.OK);
+    }
+
     @ExceptionHandler(value = ResourseNotFoundException.class)
     public ResponseStatusException handleEntityNotFoundException(ResourseNotFoundException ex) {
         return new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());

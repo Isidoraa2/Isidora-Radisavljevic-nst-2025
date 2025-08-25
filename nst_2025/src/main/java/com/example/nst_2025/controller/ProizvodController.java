@@ -52,7 +52,7 @@ public class ProizvodController {
         return ResponseEntity.ok("Proizvod je uspesno obrisan");
     }
 
-    @GetMapping("/naziv={naziv}")
+    @GetMapping("/pretraga/{naziv}")
     public ResponseEntity<List<ProizvodDto>> findProizvodByNaziv(@PathVariable String naziv) throws Exception {
         return new ResponseEntity(proizvodService.findProizvodiByNaziv(naziv), HttpStatus.OK);
     }

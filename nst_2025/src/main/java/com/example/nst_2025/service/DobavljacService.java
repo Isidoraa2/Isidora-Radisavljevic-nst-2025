@@ -11,4 +11,5 @@ public interface DobavljacService {
     List<DobavljacDto>findAllDobavljaci() throws Exception;
     DobavljacDto updateDobavljaca(Integer id, Dobavljac dobavljac)throws Exception;
     void deleteDobavljaca(Integer id)throws Exception;
+    List<DobavljacDto>findDobavljaceByNazivOrAdresa(String kriterijum) throws Exception;
 }
