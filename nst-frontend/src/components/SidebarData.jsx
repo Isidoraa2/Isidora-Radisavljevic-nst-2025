@@ -44,7 +44,7 @@ export const SidebarData = [
             },
             {
                 title:'Pronađi dobavljača',
-                link:'/'
+                link:'/pretrazi-dobavljace'
             },
             {
                 title:'Dodaj dobavljača',

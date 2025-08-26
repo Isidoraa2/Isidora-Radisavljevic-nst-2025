@@ -16,6 +16,8 @@ export const getDobavljaca=(dobavljacId)=>axios.get(REST_API_BASE_URL+'/dobavlja
 export const izmeniDobavljaca=(dobavljacId,dobavljac)=>axios.put(REST_API_BASE_URL+'/dobavljaci/'+dobavljacId,dobavljac);
 export const obrisiDobavljaca=(dobavljacId)=>axios.delete(REST_API_BASE_URL+'/dobavljaci/'+dobavljacId);
 export const getDobavljaci=()=>axios.get(REST_API_BASE_URL+'/dobavljaci');
+export const getDobavljaciByNazivOrAdresa=(kriterijum)=>axios.get(REST_API_BASE_URL+'/dobavljaci/pretraga/'+kriterijum);
+
 export const getNarudzbenicu=(narudzbenicaId)=>axios.get(REST_API_BASE_URL+'/narudzbenice/'+narudzbenicaId);
 export const deleteStavka=(brNarudzbenice,rbr)=>axios.delete(REST_API_BASE_URL+'/stavkeNarudzbenice/'+brNarudzbenice+'/'+rbr);
 export const dodajStavku=(stavka)=>axios.post(REST_API_BASE_URL+'/stavkeNarudzbenice',stavka);
