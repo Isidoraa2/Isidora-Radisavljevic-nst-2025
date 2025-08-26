@@ -43,12 +43,9 @@ const PrikaziNarudzbenicu = () => {
       const izbrisiStavku = async (stavkaId) => {
         try {
           // Slanje zahteva za brisanje stavke
-          await deleteStavka(id,stavkaId.rbr);
-          // Ažuriranje stanja nakon uspešnog brisanja
-          setNarudzbenica((prevState) => ({
-            ...prevState,
-            stavke: prevState.stavke.filter((stavka) => stavka.id.rbr !== stavkaId.rbr),
-          }));
+          const { data } = await deleteStavka(id, stavkaId.rbr);
+          setNarudzbenica(data);
+          console.log(narudzbenica);
           console.log('Stavka obrisana:', stavkaId);
         } catch (error) {
           console.error('Greška prilikom brisanja stavke:', error);

@@ -2,8 +2,10 @@ package com.example.nst_2025.service.impl;
 
 import com.example.nst_2025.dto.ProizvodDto;
 import com.example.nst_2025.exception.ResourseNotFoundException;
+import com.example.nst_2025.model.Narudzbenica;
 import com.example.nst_2025.model.StavkaNarudzbenice;
 import com.example.nst_2025.model.StavkaNarudzbenicePk;
+import com.example.nst_2025.repository.NarudzbenicaRepository;
 import com.example.nst_2025.repository.StavkaNarudzbeniceRepository;
 import com.example.nst_2025.service.ProizvodService;
 import com.example.nst_2025.service.StavkaNarudzbeniceService;
@@ -11,21 +13,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 public class StavkaNarudzbeniceServiceImpl implements StavkaNarudzbeniceService {
 
     private StavkaNarudzbeniceRepository stavkaNarudzbeniceRepository;
+    private NarudzbenicaRepository narudzbenicaService;
     private ProizvodService proizvodService;
 
     @Autowired
-    public StavkaNarudzbeniceServiceImpl(StavkaNarudzbeniceRepository stavkaNarudzbeniceRepository, ProizvodService proizvodService) {
+    public StavkaNarudzbeniceServiceImpl(StavkaNarudzbeniceRepository stavkaNarudzbeniceRepository, NarudzbenicaRepository narudzbenicaService, ProizvodService proizvodService) {
         this.stavkaNarudzbeniceRepository = stavkaNarudzbeniceRepository;
+        this.narudzbenicaService = narudzbenicaService;
         this.proizvodService = proizvodService;
     }
 
-//podrazumevano je da su ove metode Override
+    //podrazumevano je da su ove metode Override
 
     public StavkaNarudzbenice saveStavkaNarudzbenice(StavkaNarudzbenice stavka) throws Exception {
         System.out.println("hej");
@@ -64,9 +69,17 @@ public class StavkaNarudzbeniceServiceImpl implements StavkaNarudzbeniceService 
         return lista;
     }
 
-    public void deleteStavkaNarudzbenice(StavkaNarudzbenicePk pk){
+    public Narudzbenica deleteStavkaNarudzbenice(StavkaNarudzbenicePk pk){
+        Optional<Narudzbenica> n=narudzbenicaService.findById(pk.getBrNarudzbenice());
+        if(!n.isPresent()){
+            new Exception("Nema narudzbenice sa tim id-em");
+        }
         StavkaNarudzbenice sn=stavkaNarudzbeniceRepository.findById(pk).orElseThrow(()->new ResourseNotFoundException("Ne postoji stavka narudzbenice sa datim id-em"));
+        Narudzbenica narudzbenica=n.get();
+        //narudzbenica.setStavke(narudzbenica.getStavke().remove(sn));
+        narudzbenica.setUkupnaVrednost(narudzbenica.getUkupnaVrednost()-sn.getIznos());
         stavkaNarudzbeniceRepository.deleteById(pk);
+        return narudzbenica;
     }
 
     public StavkaNarudzbenice updateStavkaNarudzbenice(StavkaNarudzbenicePk pk, StavkaNarudzbenice sn) throws Exception {

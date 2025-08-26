@@ -61,22 +61,14 @@ public class StavkaNarudzbeniceController {
 
     @Transactional
     @DeleteMapping("/{brNarudzbenice}/{rbr}")
-    public ResponseEntity<String>deleteStavku(@PathVariable(name = "brNarudzbenice")Integer brNarudzbenice,@PathVariable(name = "rbr")Integer rbr) throws Exception {
+    public ResponseEntity<Narudzbenica>deleteStavku(@PathVariable(name = "brNarudzbenice")Integer brNarudzbenice,@PathVariable(name = "rbr")Integer rbr) throws Exception {
        StavkaNarudzbenicePk pk=new StavkaNarudzbenicePk();
        pk.setBrNarudzbenice(brNarudzbenice);
        pk.setRbr(rbr);
-       StavkaNarudzbenice stavkaNarudzbenice=stavkaNarudzbeniceService.findByIdStavkaNarudzbenice(pk);
-        stavkaNarudzbeniceService.deleteStavkaNarudzbenice(pk);
-        Narudzbenica narudzbenica = narudzbenicaService.findNarudzbenicaById(
-                brNarudzbenice);
-        narudzbenica.getStavke().remove(stavkaNarudzbenice);
-        double novaUkupnaVrednost=0;
-        if(narudzbenica.getStavke().size()!=0){
-            novaUkupnaVrednost = narudzbenica.getStavke().stream()
-                    .mapToDouble(stavka -> stavka.getIznos()).sum();
-        }
-        narudzbenica.setUkupnaVrednost(novaUkupnaVrednost);
-        return ResponseEntity.ok("Uspesno obrisana stavka");
+
+        Narudzbenica narudzbenica=stavkaNarudzbeniceService.deleteStavkaNarudzbenice(pk);
+        System.out.println(narudzbenica.toString());
+        return new ResponseEntity<>(narudzbenica,HttpStatus.OK);
     }
 
     @Transactional
