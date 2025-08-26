@@ -9,6 +9,7 @@ export const dodajProizvod=(proizvod)=>axios.post(REST_API_BASE_URL+'/proizvodi'
 export const izmeniProizvod=(proizvodId, proizvod)=>axios.put(REST_API_BASE_URL+'/proizvodi/'+proizvodId, proizvod);
 export const getProizvodi=()=>axios.get(REST_API_BASE_URL+'/proizvodi');
 export const getProizvod=(proizvodId)=>axios.get(REST_API_BASE_URL+'/proizvodi/'+proizvodId);
+export const getProizvodiByNaziv=(naziv)=>axios.get(REST_API_BASE_URL+'/proizvodi/pretraga/'+naziv);
 export const deleteProizvod=(proizvodId)=>axios.delete(REST_API_BASE_URL+'/proizvodi/'+proizvodId);
 export const dodajDobavljaca=(dobavljac)=>axios.post(REST_API_BASE_URL+'/dobavljaci',dobavljac);
 export const getDobavljaca=(dobavljacId)=>axios.get(REST_API_BASE_URL+'/dobavljaci/'+dobavljacId);

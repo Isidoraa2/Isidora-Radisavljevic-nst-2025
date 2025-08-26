@@ -20,6 +20,7 @@ import ListProizvodiComponent from './components/ListProizvodiComponent'
 import LoginComponent from './components/LoginComponent'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Sidebar from './components/Sidebar'
+import ProizvodSearchComponent from './components/ProizvodSearchComponent'
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -35,6 +36,8 @@ function App() {
         <Route path='/'element={<HomeComponent></HomeComponent>}></Route>
         <Route path='/dodaj-proizvod' element={<ProizvodComponent></ProizvodComponent>}></Route>
         <Route path='/izmeni-proizvod/:id' element={<ProizvodComponent></ProizvodComponent>}></Route>
+        <Route path='/pretrazi-proizvode' element={<ProizvodSearchComponent></ProizvodSearchComponent>}></Route>
+        <Route path='/pretrazi-proizvode/:kriterijum' element={<ProizvodSearchComponent></ProizvodSearchComponent>}></Route>
         <Route path='/proizvodi'element={<ListProizvodiComponent></ListProizvodiComponent>}></Route>
         <Route path='/dobavljaci'element={<ListDobavljaciComponent></ListDobavljaciComponent>}></Route>
         <Route path='/dodaj-dobavljaca' element={<DobavljacComponent></DobavljacComponent>}></Route>

@@ -117,3 +117,17 @@
 .logout-icon:hover {
   color: #ddd;
 }
+
+.custom-btn {
+  background-color: #2F4050;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-btn:hover {
+  background-color: #1c2833;
+  color: #ddd;
+}

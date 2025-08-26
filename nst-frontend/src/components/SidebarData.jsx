@@ -23,7 +23,7 @@ export const SidebarData = [
             },
             {
                 title:'Pronađi proizvod',
-                link:'/'
+                link:'/pretrazi-proizvode'
             },
             {
                 title:'Dodaj proizvod',
