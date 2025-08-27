@@ -11,4 +11,5 @@ public interface NarudzbenicaService {
     Integer findMaxId() throws Exception;
     Narudzbenica updateNarudzbenica(Integer id, Narudzbenica narudzbenica)throws Exception;
     void deleteNarudzbenicu(Integer id)throws Exception;
+    List<Narudzbenica>searchNarudzbenice(String kriterijum) throws  Exception;
 }

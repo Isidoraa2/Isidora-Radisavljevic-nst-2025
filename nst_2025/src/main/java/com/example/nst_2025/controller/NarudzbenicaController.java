@@ -1,6 +1,7 @@
 package com.example.nst_2025.controller;
 
 import com.example.nst_2025.model.Narudzbenica;
+import com.example.nst_2025.service.NarudzbenicaService;
 import com.example.nst_2025.service.impl.NarudzbenicaServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/app/narudzbenice")
 public class NarudzbenicaController {
-    private NarudzbenicaServiceImpl narudzbenicaService;
+    private NarudzbenicaService narudzbenicaService;
 
     @Autowired
-    public NarudzbenicaController(NarudzbenicaServiceImpl narudzbenicaService) {
+    public NarudzbenicaController(NarudzbenicaService narudzbenicaService) {
         this.narudzbenicaService = narudzbenicaService;
     }
 
@@ -38,6 +39,13 @@ public class NarudzbenicaController {
         List<Narudzbenica>lista=narudzbenicaService.findAllNarudzbenice();
         return new ResponseEntity<>(lista,HttpStatus.OK);
     }
+
+    @GetMapping("/pretraga/{param}")
+    public ResponseEntity<List<Narudzbenica>> narudzbeniceSearch(@PathVariable String param) throws Exception {
+        List<Narudzbenica>lista=narudzbenicaService.searchNarudzbenice(param);
+        return new ResponseEntity<>(lista,HttpStatus.OK);
+    }
+
 
     @PutMapping("{id}")
     public ResponseEntity<Narudzbenica>updateNarudzbenica(@PathVariable Integer id, @RequestBody Narudzbenica narudzbenica) throws Exception {

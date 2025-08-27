@@ -105,6 +105,17 @@ public class NarudzbenicaServiceImpl implements NarudzbenicaService {
         narudzbenicaRepository.deleteById(id);
     }
 
+    @Override
+    public List<Narudzbenica> searchNarudzbenice(String kriterijum) throws Exception {
+        List<Integer>listaID=narudzbenicaRepository.findNarudzbeniceSearch(kriterijum);
+        List<Narudzbenica>listaNarudzbenica=new ArrayList<>();
+        for(Integer id:listaID){
+            Optional<Narudzbenica> n=narudzbenicaRepository.findById(id);
+            listaNarudzbenica.add(n.get());
+        }
+        return listaNarudzbenica;
+    }
+
 
     //pomocna metoda
     public double izracunajUkupnuVrednostNarudzbenice(Narudzbenica narudzbenica){

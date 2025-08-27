@@ -23,12 +23,12 @@ public class Narudzbenica {
     private double ukupnaVrednost;
 
     @ManyToOne
-    @JoinColumn(name = "zaposleniId")
+    @JoinColumn(name = "zaposleni_id")
    // @JsonBackReference
     private Zaposleni zaposleni;
 
     @ManyToOne()
-    @JoinColumn(name = "dobavljacId")
+    @JoinColumn(name = "dobavljac_id")
   // @JsonBackReference
     private Dobavljac dobavljac;
 
