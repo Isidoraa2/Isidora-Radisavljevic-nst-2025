@@ -60,12 +60,8 @@ export const SidebarData = [
         iconOpened: <KeyboardArrowUpIcon></KeyboardArrowUpIcon>,
         subNav:[
             {
-                title:'Prikaži sve narudžbenice',
-                link:'/'
-            },
-            {
                 title:'Pronađi narudžbenicu',
-                link:'/prikazi-narudzbenicu'
+                link:'/pretrazi-narudzbenice'
             },
             {
                 title:'Dodaj narudžbenicu',

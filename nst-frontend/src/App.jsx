@@ -44,11 +44,11 @@ function App() {
         <Route path='/dodaj-dobavljaca' element={<DobavljacComponent></DobavljacComponent>}></Route>
         <Route path='/izmeni-dobavljaca/:id' element={<DobavljacComponent></DobavljacComponent>}></Route>
         <Route path='/prikaz-dobavljaca/:id' element={<PrikazDobavljaca></PrikazDobavljaca>}></Route>
-        
+        <Route path='/prikaz-narudzbenice/:id' element={<PrikaziNarudzbenicu></PrikaziNarudzbenicu>}></Route>
         <Route path='/pretrazi-dobavljace' element={<DobavljacSearchComponent></DobavljacSearchComponent>}></Route>
         <Route path='/pretrazi-dobavljace/:urlParametar' element={<DobavljacSearchComponent></DobavljacSearchComponent>}></Route>
-        <Route path='/prikazi-narudzbenicu' element={<PretraziNarudzbenicu></PretraziNarudzbenicu>}></Route>
-        <Route path='/prikazi-narudzbenicu/:id' element={<PrikaziNarudzbenicu></PrikaziNarudzbenicu>}></Route>
+        <Route path='/pretrazi-narudzbenice' element={<PretraziNarudzbenicu></PretraziNarudzbenicu>}></Route>
+        <Route path='/pretrazi-narudzbenice/:urlParametar' element={<PretraziNarudzbenicu></PretraziNarudzbenicu>}></Route>
         <Route path='/dodaj-stavku/:id' element={<DodajStavku></DodajStavku>}></Route>
         <Route path='/izmeni-stavku/:brNarudzbenice/:rbr' element={<IzmeniStavku></IzmeniStavku>}></Route>
         <Route path='/dodaj-narudzbenicu' element={<DodajNarudzbenicu></DodajNarudzbenicu>}></Route>
