@@ -3,6 +3,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import CoffeeIcon from '@mui/icons-material/Coffee';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import DescriptionIcon from '@mui/icons-material/Description';
 
 export const SidebarData = [
     {
@@ -33,7 +35,7 @@ export const SidebarData = [
     },
     {
         title:'Dobavljači',
-        icon: <CoffeeIcon></CoffeeIcon>,
+        icon: <LocalShippingIcon></LocalShippingIcon>,
         link:'/dobavljaci',
         iconClosed: <KeyboardArrowDownIcon></KeyboardArrowDownIcon>,
         iconOpened: <KeyboardArrowUpIcon></KeyboardArrowUpIcon>,
@@ -54,7 +56,7 @@ export const SidebarData = [
     },
     {
         title:'Narudžbenice',
-        icon: <CoffeeIcon></CoffeeIcon>,
+        icon: <DescriptionIcon></DescriptionIcon>,
         link:'/',
         iconClosed: <KeyboardArrowDownIcon></KeyboardArrowDownIcon>,
         iconOpened: <KeyboardArrowUpIcon></KeyboardArrowUpIcon>,
