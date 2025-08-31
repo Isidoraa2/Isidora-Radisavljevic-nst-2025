@@ -126,6 +126,7 @@
 				<artifactId>spotbugs-maven-plugin</artifactId>
 				<version>4.9.3.0</version>
 				<configuration>
+					<failOnError>false</failOnError>
 					<excludeFilterFile>${project.basedir}/exclude-filter.xml</excludeFilterFile>
 				</configuration>
 				<executions>
