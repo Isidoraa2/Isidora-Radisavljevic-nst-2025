@@ -68,8 +68,7 @@ public class ProizvodServiceImpl implements ProizvodService {
 
     @Override
     public List<ProizvodDto> findProizvodiByNaziv(String naziv) throws Exception {
-        List<Proizvod>listaProizvoda=new ArrayList<>();
-        listaProizvoda=proizvodRepository.findByNazivContainingIgnoreCase(naziv);
+        List<Proizvod> listaProizvoda=proizvodRepository.findByNazivContainingIgnoreCase(naziv);
         return listaProizvoda.stream().map(proizvod ->proizvodMapper.toDto(proizvod)) .collect(Collectors.toList());
     }
 }

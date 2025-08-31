@@ -69,10 +69,10 @@ public class StavkaNarudzbeniceServiceImpl implements StavkaNarudzbeniceService 
         return lista;
     }
 
-    public Narudzbenica deleteStavkaNarudzbenice(StavkaNarudzbenicePk pk){
+    public Narudzbenica deleteStavkaNarudzbenice(StavkaNarudzbenicePk pk) throws Exception{
         Optional<Narudzbenica> n=narudzbenicaService.findById(pk.getBrNarudzbenice());
         if(!n.isPresent()){
-            new Exception("Nema narudzbenice sa tim id-em");
+            throw  new Exception("Nema narudzbenice sa tim id-em");
         }
         StavkaNarudzbenice sn=stavkaNarudzbeniceRepository.findById(pk).orElseThrow(()->new ResourseNotFoundException("Ne postoji stavka narudzbenice sa datim id-em"));
         Narudzbenica narudzbenica=n.get();

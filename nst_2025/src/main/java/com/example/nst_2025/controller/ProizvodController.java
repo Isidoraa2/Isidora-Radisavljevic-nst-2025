@@ -32,7 +32,6 @@ public class ProizvodController {
 
     @GetMapping
     public ResponseEntity<List<ProizvodDto>>getAllProizvodi() throws Exception{
-        List<ProizvodDto>lista=proizvodService.findAllProizvodi();
         return new ResponseEntity<>(proizvodService.findAllProizvodi(),HttpStatus.OK);
     }
 

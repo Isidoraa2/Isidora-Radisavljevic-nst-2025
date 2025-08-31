@@ -20,13 +20,11 @@ import java.util.Optional;
 public class NarudzbenicaServiceImpl implements NarudzbenicaService {
 
     private NarudzbenicaRepository narudzbenicaRepository;
-    private StavkaNarudzbeniceRepository stavkaNarudzbeniceRepository;
     private ProizvodRepository proizvodRepository;
 
     @Autowired
-    public NarudzbenicaServiceImpl(NarudzbenicaRepository narudzbenicaRepository, StavkaNarudzbeniceRepository stavkaNarudzbeniceRepository, ProizvodRepository proizvodRepository) {
+    public NarudzbenicaServiceImpl(NarudzbenicaRepository narudzbenicaRepository, ProizvodRepository proizvodRepository) {
         this.narudzbenicaRepository = narudzbenicaRepository;
-        this.stavkaNarudzbeniceRepository = stavkaNarudzbeniceRepository;
         this.proizvodRepository = proizvodRepository;
     }
 

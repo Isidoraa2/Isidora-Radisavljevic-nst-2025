@@ -3,6 +3,7 @@ package com.example.nst_2025.dto;
 import java.io.Serializable;
 
 public class DobavljacDto implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Integer id;
     private String naziv;
     private String adresa;

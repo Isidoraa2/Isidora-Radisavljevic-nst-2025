@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Embeddable
 public class StavkaNarudzbenicePk implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private Integer brNarudzbenice;
     private Integer rbr;
 
