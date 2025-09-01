@@ -21,14 +21,15 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
-        working-directory: ./nst_2025  
+        working-directory: ./nst_2025
         run: mvn clean install -DskipTests
 
       - name: Run tests
+        working-directory: ./nst_2025
         run: mvn test
 
       - name: Upload artifact (JAR)
         uses: actions/upload-artifact@v4
         with:
           name: Isidora-Radisavljevic-nst-2025
-          path: target/*.jar
+          path: nst_2025/target/*.jar
