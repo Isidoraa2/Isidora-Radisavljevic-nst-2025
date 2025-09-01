@@ -30,6 +30,8 @@ function ProizvodSearchComponent() {
 
     const handleSearch = async () => {
         try {
+          setErrorMessage('');
+          setProizvodi([]);
             console.log(naziv);
             const response= await getProizvodiByNaziv(naziv);
           if (response.data && response.data.length > 0) {
@@ -75,8 +77,11 @@ function ProizvodSearchComponent() {
             <button className="btn custom-btn ms-2" onClick={handleSearch}>
                 Pretraži
             </button>
+        </div>
+      </div>
           {kriterijum && proizvodi.length > 0 && (
-                        <table className="table table-striped table-bordered mt-3">
+                
+                        <table className="table table-striped table-bordered mt-5">
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -115,11 +120,11 @@ function ProizvodSearchComponent() {
                             </tbody>
                         </table>
                     )}
-        </div>
+        
         {errorMessage && <div className="alert alert-danger" style={{marginTop:"10px"}}>{errorMessage}</div>}
       </div>
       
-    </div>
+    
   </div>
   )
 }

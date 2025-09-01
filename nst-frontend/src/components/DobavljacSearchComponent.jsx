@@ -28,6 +28,8 @@ function DobavljacSearchComponent() {
     
         const handleSearch = async () => {
             try {
+                setdobavljaci([]);
+                setErrorMessage('');
                 console.log(kriterijum);
                 const response= await getDobavljaciByNazivOrAdresa(kriterijum);
               if (response.data && response.data.length > 0) {
@@ -71,8 +73,10 @@ function DobavljacSearchComponent() {
                         <button className="btn custom-btn ms-2" onClick={handleSearch}>
                             Pretraži
                         </button>
+                    </div>
+                </div>
                     {urlParametar && dobavljaci.length > 0 && (
-                                <table className='table table-striped table-bordered'>
+                                <table className='table table-striped table-bordered mt-4'>
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -104,9 +108,9 @@ function DobavljacSearchComponent() {
                     
                     </table> 
                     )}
-                    </div>
+                    
                     {errorMessage && <div className="alert alert-danger" style={{marginTop:"10px"}}>{errorMessage}</div>}
-                </div>
+                
                 
                 </div>
             </div>

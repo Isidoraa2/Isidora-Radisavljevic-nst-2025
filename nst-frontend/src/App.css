@@ -49,6 +49,7 @@
   height: calc(100vh - var(--header-height)); 
   width: 220px;
   background-color: #2F4050;
+  z-index: 1000;
 }
 
 .SidebarList{
