@@ -63,6 +63,8 @@ const PretraziNarudzbenicu = () => {
           <button className="btn btn-primary" onClick={handleSearch}>
             Pretraži
           </button>
+        </div>
+      </div>
           {kriterijum && narudzbenice.length > 0 && (
                         <table className="table table-striped table-bordered mt-3">
                             <thead>
@@ -89,10 +91,9 @@ const PretraziNarudzbenicu = () => {
                             </tbody>
                         </table>
                     )}
-        </div>
+        
         {errorMessage && <div className="alert alert-danger" style={{marginTop:"10px"}}>{errorMessage}</div>}
-      </div>
-      
+    
     </div>
   </div>
   )
